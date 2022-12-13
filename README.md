@@ -17,15 +17,6 @@ Our code is base on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet). To use
 
 
 
-## Citation
+## Contact Us
 
-If BEV-MAE is useful or relevant to your research, please cite our paper:
-
-```bibtex
-@article{lin2022bevmae,
-  title={BEV-MAE: Bird's Eye View Masked Autoencoders for Outdoor Point Cloud Pre-training},
-  author={Zhiwei Lin and Yongtao Wang},
-  journal={arXiv preprint arXiv:2207.01271},
-  year={2022}
-}
-```
+If you have any problem about this work, please feel free to reach us out at `zwlin@pku.edu.cn`.
