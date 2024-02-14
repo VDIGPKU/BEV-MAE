@@ -1,0 +1,60 @@
+CLASS_NAMES: ['Vehicle', 'Pedestrian', 'Cyclist']
+
+DATA_CONFIG:
+    _BASE_CONFIG_: cfgs/dataset_configs/waymo_dataset_mae.yaml
+    DATA_PROCESSOR:
+        - NAME: shuffle_points
+          SHUFFLE_ENABLED: {
+            'train': True,
+            'test': True
+          }
+        - NAME: transform_points_to_voxels_dbscan
+          VOXEL_SIZE: [0.1, 0.1, 0.15]
+          MAX_POINTS_PER_VOXEL: 5
+          MAX_NUMBER_OF_VOXELS: {
+            'train': 150000,
+            'test': 150000
+          }
+
+          VOXEL_SIZE_BEV: [0.8, 0.8, 6]
+          MAX_POINTS_PER_VOXEL_BEV: 30
+          MAX_NUMBER_OF_VOXELS_BEV: {
+            'train': 150000,
+            'test': 150000
+          }
+
+
+MODEL:
+    NAME: BEV_MAE
+
+    VFE:
+        NAME: MeanVFE
+
+    BACKBONE_3D:
+        NAME: BEV_MAE_res_dbscan
+        MASKED_RATIO: 0.7 
+        GRID: 1
+        VOXEL_SIZE: [0.8, 0.8, 6]
+        POINT_CLOUD_RANGE: [-75.2, -75.2, -2, 75.2, 75.2, 4]
+
+
+OPTIMIZATION:
+    BATCH_SIZE_PER_GPU: 4
+    NUM_EPOCHS: 20
+
+    OPTIMIZER: adam_onecycle
+    LR: 0.0003
+    WEIGHT_DECAY: 0.01
+    MOMENTUM: 0.9
+
+    MOMS: [0.95, 0.85]
+    PCT_START: 0.4
+    DIV_FACTOR: 10
+    DECAY_STEP_LIST: [35, 45]
+    LR_DECAY: 0.1
+    LR_CLIP: 0.0000001
+
+    LR_WARMUP: False
+    WARMUP_EPOCH: 1
+
+    GRAD_NORM_CLIP: 10

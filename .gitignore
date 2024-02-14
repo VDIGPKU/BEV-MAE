@@ -1,0 +1,26 @@
+*.pyc
+*.egg-info
+dist
+# datasets
+pytorch_env
+# models
+build
+correlation.egg-info
+checkpoints
+# runs/
+# *submission*/
+flow
+*.lzma
+ea_log/
+*.pth
+
+submission
+# datasets
+ckpt
+output
+data
+run_181.sh
+pcdet/ops/
+tools/imgs/
+tools/scripts/
+calculate_average.py
